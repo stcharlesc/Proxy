@@ -1,8 +1,5 @@
-# 自用 Quantumult X 配置
+**自用配置，仅为方便**
 
-> 自用配置，仅为方便使用
-
-## 配置来源:
 配置文件通过修改 [`Orz-3`](https://github.com/Orz-3/QuantumultX) 配置而来
 
 - 规则主要使用 [神机规则](https://github.com/DivineEngine/Profiles/tree/master) 和 [Nobyda](https://github.com/NobyDa) 重写、去广告
