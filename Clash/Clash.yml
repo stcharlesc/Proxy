@@ -1,11 +1,102 @@
 # port: 7890
 # socks-port: 7891
+
 mixed-port: 7890
 allow-lan: false
 bind-address: '*'
 mode: rule
 log-level: info
-external-controller: :9090
+ipv6: false
+external-controller: 127.0.0.1:9090
+
+hosts:
+  # '*.clash.dev': 127.0.0.1
+  # '.dev': 127.0.0.1
+  # 'alpha.clash.dev': '::1'
+
+  # Firebase Cloud Messaging
+  'mtalk.google.com': 108.177.125.188
+  # Google Dl
+  'dl.google.com': 180.163.151.161
+  'dl.l.google.com': 180.163.151.161
+
+dns:
+  enable: false
+  listen: 0.0.0.0:53
+  # ipv6: false # when the false, response to AAAA questions will be empty
+
+  # These nameservers are used to resolve the DNS nameserver hostnames below.
+  # Specify IP addresses only
+  default-nameserver:
+    - 119.29.29.29
+  enhanced-mode: redir-host # or fake-ip
+  fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
+  # use-hosts: true # lookup hosts and return IP record
+
+  # Hostnames in this list will not be resolved with fake IPs
+  # i.e. questions to these domain names will always be answered with their
+  # real IP addresses
+  fake-ip-filter:
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
+  
+  # Supports UDP, TCP, DoT, DoH. You can specify the port to connect to.
+  # All DNS questions are sent directly to the nameserver, without proxies
+  # involved. Clash answers the DNS question with the first result gathered.
+  nameserver:
+    - 119.29.29.29
+    # - tls://dns.rubyfish.cn:853 # DNS over TLS
+    # - https://1.1.1.1/dns-query # DNS over HTTPS
+
+  # When `fallback` is present, the DNS server will send concurrent requests
+  # to the servers in this section along with servers in `nameservers`.
+  # The answers from fallback servers are used when the GEOIP country
+  # is not `CN`.
+  # fallback:
+  #   - tcp://1.1.1.1
+
+  # If IP addresses resolved with servers in `nameservers` are in the specified
+  # subnets below, they are considered invalid and results from `fallback`
+  # servers are used instead.
+  #
+  # IP address resolved with servers in `nameserver` is used when
+  # `fallback-filter.geoip` is true and when GEOIP of the IP address is `CN`.
+  #
+  # If `fallback-filter.geoip` is false, results from `nameserver` nameservers
+  # are always used if not match `fallback-filter.ipcidr`.
+  #
+  # This is a countermeasure against DNS pollution attacks.
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      # - 240.0.0.0/4
+    # domain:
+    #   - '+.google.com'
+    #   - '+.facebook.com'
+    #   - '+.youtube.com'
+
+#
+# https://github.com/Dreamacro/clash/wiki/premium-core-features
+#
+# tun:
+#   enable: true
+#   stack: system # or gvisor
+#   # dns-hijack:
+#   #   - 8.8.8.8:53
+#   #   - tcp://8.8.8.8:53
+#   macOS-auto-route: true # auto set global route
+#   macOS-auto-detect-interface: true # conflict with interface-name
 
 proxy-providers:
   
@@ -29,7 +120,7 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  🇹🇼 台湾节点:
+  🇨🇳 台湾节点:
     type: http
     url: ""
     interval: 3600
@@ -69,10 +160,7 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-
-
 proxy-groups:
-
   - name: "🚀 节点选择"
     type: select
     proxies:
@@ -80,122 +168,139 @@ proxy-groups:
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
       - DIRECT
+
   - name: "🚀 手动切换"
     type: select
     use: 
       - ✈️ 机场订阅
+
   - name: "♻️ 自动选择"
     type: url-test
     use:
       - ✈️ 机场订阅
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50 
+    tolerance: 50
+ 
   - name: "🔯 故障转移"
     type: fallback
     use: 
       - ✈️ 机场订阅
     url: 'http://www.gstatic.com/generate_204'
-    interval: 300 
+    interval: 300
+ 
   - name: "📲 Telegram"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
       - DIRECT
-
-
-
-
-
-
 
   - name: "📹 YouTube"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
       - DIRECT   
-       
-
-
-
-
-
 
   - name: "🎥 Netflix"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
       - DIRECT
+
+  - name: "📺 Bahamut"
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🚀 手动切换
+      - ♻️ 自动选择
+      - 🔯 故障转移
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇺🇸 美国节点
+      - 🇯🇵 日本节点
+      - DIRECT
+   
   - name: "🎶 Spotify"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
       - DIRECT
+
   - name: "🌍 国外媒体"
     type: select
     proxies:
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
       - DIRECT
+
   - name: "🌏 港台番剧"
     type: select
     proxies:
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
       - DIRECT
+
   - name: "Ⓜ️ OneDrive"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
@@ -204,11 +309,12 @@ proxy-groups:
   - name: "Ⓜ️ 微软服务"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
@@ -217,11 +323,12 @@ proxy-groups:
   - name: "🍎 苹果服务"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
@@ -230,37 +337,67 @@ proxy-groups:
   - name: "📚 学术网站"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
-      - DIRECT    
+      - DIRECT
 
+  - name: "💳 PayPal"
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - 🚀 手动切换
+      - ♻️ 自动选择
+      - 🔯 故障转移
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇺🇸 美国节点
+      - 🇯🇵 日本节点
+      - DIRECT     
+
+  - name: "🌑 全球加速"
+    type: select
+    proxies: 
+      - 🚀 节点选择
+      - 🚀 手动切换
+      - ♻️ 自动选择
+      - 🔯 故障转移
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇺🇸 美国节点
+      - 🇯🇵 日本节点
+      - DIRECT
+  
   - name: "🎯 全球直连"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
-      - DIRECT    
-
+      - DIRECT   
   - name: "🐟 漏网之鱼"
     type: select
     proxies: 
+      - 🚀 节点选择
       - 🚀 手动切换
       - ♻️ 自动选择
       - 🔯 故障转移
       - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
       - 🇸🇬 狮城节点
       - 🇺🇸 美国节点
       - 🇯🇵 日本节点
@@ -272,11 +409,12 @@ proxy-groups:
       - 🇭🇰 香港节点
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50       
-  - name: "🇹🇼 台湾节点"
+    tolerance: 50
+     
+  - name: "🇨🇳 台湾节点"
     type: url-test
     use: 
-      - 🇹🇼 台湾节点
+      - 🇨🇳 台湾节点
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50 
@@ -305,11 +443,6 @@ proxy-groups:
     interval: 300
     tolerance: 50 
     
-      
-
-
-
-      
 rule-providers:
   Unbreak:
     type: http
@@ -400,6 +533,7 @@ rule-providers:
     path: ./RuleSet/Microsoft.yaml
     url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Microsoft.list
     interval: 86400  
+
   Scholar:
     type: http
     behavior: classical
@@ -407,6 +541,13 @@ rule-providers:
     url: https://raw.githubusercontent.com/stcharlesc/Proxy/master/Clash/RuleSet/Scholar.yaml
     interval: 86400
     
+  PayPal:
+    type: http
+    behavior: classical
+    path: ./RuleSet/PayPal.yaml
+    url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Extra/PayPal.yaml
+    interval: 86400
+
   Global:
     type: http
     behavior: classical
@@ -434,7 +575,6 @@ rule-providers:
     path: ./RuleSet/ChinaIP.yaml
     url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Extra/ChinaIP.yaml
     interval: 86400
-    
 
 rules:
   - RULE-SET,Unbreak,DIRECT
@@ -451,7 +591,8 @@ rules:
   - RULE-SET,OneDrive,Ⓜ️ OneDrive
   - RULE-SET,Microsoft,Ⓜ️ 微软服务
   - RULE-SET,Scholar,📚 学术网站
-  - RULE-SET,Global,🐟 漏网之鱼
+  - RULE-SET,PayPal,💳 PayPal
+  - RULE-SET,Global,🌑 全球加速
   - RULE-SET,Apple,🍎 苹果服务
   - RULE-SET,China,DIRECT
   - RULE-SET,ChinaIP,DIRECT
@@ -466,6 +607,4 @@ rules:
   - IP-CIDR,182.254.116.0/24,DIRECT
   - GEOIP,CN,DIRECT
   - MATCH,🐟 漏网之鱼
-  
-  
-   
+ 
