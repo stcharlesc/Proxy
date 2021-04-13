@@ -499,6 +499,7 @@ rule-providers:
     path: ./RuleSet/Bahamut.yaml
     url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/StreamingMedia/Video/Bahamut.yaml
     interval: 86400
+
   Spotify:
     type: http
     behavior: classical
@@ -531,7 +532,7 @@ rule-providers:
     type: http
     behavior: classical
     path: ./RuleSet/Microsoft.yaml
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Microsoft.list
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml
     interval: 86400  
 
   Scholar:
