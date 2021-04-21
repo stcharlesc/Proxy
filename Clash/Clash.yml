@@ -526,7 +526,7 @@ rule-providers:
     type: http
     behavior: classical
     path: ./RuleSet/Scholar.yaml
-    url: https://raw.githubusercontent.com/stcharlesc/Proxy/master/Clash/RuleSet/Scholar.yaml
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Scholar.list
     interval: 86400
     
   PayPal:
