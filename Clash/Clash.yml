@@ -100,7 +100,7 @@ dns:
 
 proxy-providers:
   
-  ✈️ 机场订阅:
+  机场订阅:
     type: http
     url: ""
     interval: 3600
@@ -110,7 +110,7 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  🇭🇰 香港节点:
+  香港节点:
     type: http
     url: ""
     interval: 3600
@@ -120,7 +120,7 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  🇨🇳 台湾节点:
+  台湾节点:
     type: http
     url: ""
     interval: 3600
@@ -130,7 +130,7 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  🇸🇬 狮城节点:
+  狮城节点:
     type: http
     url: ""
     interval: 3600
@@ -140,7 +140,7 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  🇺🇸 美国节点:
+  美国节点:
     type: http
     url: ""
     interval: 3600
@@ -150,7 +150,7 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  🇯🇵 日本节点:
+  日本节点:
     type: http
     url: ""
     interval: 3600
@@ -177,12 +177,12 @@ proxy-groups:
   - name: "🚀 手动切换"
     type: select
     use: 
-      - ✈️ 机场订阅
+      - 机场订阅
 
   - name: "♻️ 自动选择"
     type: url-test
     use:
-      - ✈️ 机场订阅
+      - 机场订阅
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -190,7 +190,7 @@ proxy-groups:
   - name: "🔯 故障转移"
     type: fallback
     use: 
-      - ✈️ 机场订阅
+      - 机场订阅
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
  
@@ -393,7 +393,7 @@ proxy-groups:
   - name: "🇭🇰 香港节点"
     type: url-test
     use:
-      - 🇭🇰 香港节点
+      - 香港节点
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -401,7 +401,7 @@ proxy-groups:
   - name: "🇨🇳 台湾节点"
     type: url-test
     use: 
-      - 🇨🇳 台湾节点
+      - 台湾节点
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50 
@@ -409,7 +409,7 @@ proxy-groups:
   - name: "🇸🇬 狮城节点"
     type: url-test
     use: 
-      - 🇸🇬 狮城节点
+      - 狮城节点
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50 
@@ -417,7 +417,7 @@ proxy-groups:
   - name: "🇺🇸 美国节点"
     type: url-test
     use: 
-      - 🇺🇸 美国节点
+      - 美国节点
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50 
@@ -425,7 +425,7 @@ proxy-groups:
   - name: "🇯🇵 日本节点"
     type: url-test
     use: 
-      - 🇯🇵 日本节点
+      - 日本节点
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50 
