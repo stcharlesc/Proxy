@@ -7,4 +7,6 @@
 - [Emby 解锁](https://subweb.oss-cn-hongkong.aliyuncs.com/Module/embyUnlocked.sgmodule)
 - [Wikipedia 美化](https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/Wikiwand.sgmodule)
 - [比价、评分](https://raw.githubusercontent.com/stcharlesc/Proxy/master/Surge/General.sgmodule)
+- [关闭谷歌安全搜索](https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/Turn-Off-Google-Safesearch.sgmodule)
+- [Sub-store](https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/config/Surge.sgmodule)
 
