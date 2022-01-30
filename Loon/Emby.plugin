@@ -1,3 +1,5 @@
-^https:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey) url script-echo-response https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/embycrack.js
-
+[MITM]
 hostname = mb3admin.com
+
+[Script]
+^https:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey) url script-echo-response https://raw.githubusercontent.com/stcharlesc/Proxy/master/embycrack.js
