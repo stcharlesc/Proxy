@@ -1,8 +1,10 @@
 #!name=TF 下载修正
 #!desc=修正 Testflight 下载
 
-
+[General]
+skip-proxy = %APPEND% iosapps.itunes.apple.com
 # TF 下载
+[Script]
 TF下载修正 = type=http-request,pattern=^https?:\/\/testflight\.apple\.com\/v\d\/accounts\/.+?\/install$,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/TF_Download.js
 
 
