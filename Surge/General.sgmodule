@@ -1,9 +1,11 @@
 #!name=常用脚本
 #!desc=京东、淘宝比价，Netflix评分，Emby破解、TF 下载修正
+[General]
+skip-proxy = %APPEND% iosapps.itunes.apple.com
+
 
 [Script]
-
-[Script]
+# Netflix 评分
 nf_rating.js = type=http-request,pattern=^https?:\/\/ios(-.*)?\.prod\.ftl\.netflix\.com\/iosui\/user/.+path=%5B%22videos%22%2C%\d+%22%2C%22summary%22%5D,script-path=https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/nf_rating.js
 nf_rating.js = type=http-response,requires-body=1,pattern=^https?:\/\/ios(-.*)?\.prod\.ftl\.netflix\.com\/iosui\/user/.+path=%5B%22videos%22%2C%\d+%22%2C%22summary%22%5D,script-path=https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/nf_rating.js
 # 单集评分
