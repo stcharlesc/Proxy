@@ -6,7 +6,7 @@ http-response ^https?://ios\.prod\.ftl\.netflix\.com/iosui/user/.+path=%5B%22vid
 http-response ^https?:\/\/ios(-.*)?\.prod\.ftl\.netflix\.com\/iosui\/warmer/.+type=show-ath requires-body=1 max-size=0 script-path=https://raw.githubusercontent.com/yichahucha/surge/master/nf_rating_season.js
 
 # Emby破解(by KleinerSource)
-# ^https:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey) url script-echo-response https://raw.githubusercontent.com/stcharlesc/Proxy/master/Java/Script/embycrack.js
+# ^https:\/\/mb3admin\.com\/admin\/service(\/registration\/validateDevice|\/appstore\/register|\/registration\/validate|\/registration\/getStatus|\/supporter\/retrievekey) url script-echo-response https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/embycrack.js
 http-response ^https?:\/\/mb3admin.com\/admin\/service\/registration\/validateDevice requires-body=1,max-size=0, script-path=https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/embycrack.js, tag=embyUnlocked
 
 # TF 下载
