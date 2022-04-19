@@ -5,10 +5,8 @@
 配置重载 = title=配置重载,content=配置重载,style=info,script-name=配置重载,update-interval=-1
 # 刷新DNS
 刷新DNS = script-name=刷新DNS,update-interval=1
-# Disney Plus检测
-disney_check = script-name=disney_check,title=Disney+ 解锁检测,style=alert,content=请刷新面板,update-interval=21600
-# Netflix 检测
-nf_check = script-name=nf_check, title="Netflix 解锁检测", content="请刷新", update-interval=1
+# 流媒体解锁检测
+stream-all = script-name=stream-all, title="流媒体解锁检测", content="请刷新面板", update-interval=-1
 
 [Script]
 
@@ -18,7 +16,5 @@ nf_check = script-name=nf_check, title="Netflix 解锁检测", content="请刷�
 # 刷新DNS
 刷新DNS = type=generic,timeout=3,script-path=https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/flushDNS.js, argument=title=刷新DNS缓存&icon=repeat.circle.fill&color=#FF9F0A&server=false
 
-# D+解锁检测
-disney_check = type=generic,script-path=https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/disney_check.js
-# nf检测
-nf_check = type=generic, script-path=https://raw.githubusercontent.com/stcharlesc/Proxy/master/JavaScript/nf_check.js, argument=title=Netflix 解锁检测
+# 流媒体解锁检测
+stream-all = type=generic, timeout=15, script-path=https://raw.githubusercontent.com/LucaLin233/Luca_Conf/main/Surge/JS/stream-all.js
